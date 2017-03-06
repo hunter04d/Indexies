@@ -50,17 +50,17 @@ public:
 		return actualValue;
 	}
 
-	const bool& at(size_t pos) const
+	std::vector<bool>::const_reference  at(size_t pos) const
 	{
 		return F_VarTable.at(pos);
 	}
 
-	const bool& front() const
+	std::vector<bool>::const_reference front() const
 	{
 		return F_VarTable.front();
 	}
 
-	const bool& back() const
+	std::vector<bool>::const_reference back() const
 	{
 		return F_VarTable.back();
 	}

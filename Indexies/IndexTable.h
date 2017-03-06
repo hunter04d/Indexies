@@ -40,7 +40,7 @@ public:
 		{
 			combinationsRef = utility::NcombK(NumOfVars, K);
 			size_t CurrNumOfComb = utility::numberof_NcombK(NumOfVars, K);
-			for (auto j = counter; j <counter+CurrNumOfComb; ++j)
+			for (auto j = counter; j < counter+CurrNumOfComb; ++j)
 			{
 				for (auto i = 0; i < size; ++i)
 				{

@@ -18,7 +18,7 @@ int main()
 	std::cout << func.size() << std::endl;
 	for (int i = 0; i < func.size(); ++i)
 	{
-		if(!func.at(i))
+		if (!func.at(i))
 		{
 			a.RemoveRow(i);
 		}
@@ -26,7 +26,9 @@ int main()
 	PrintTable(func);
 	a.RemoveRemoved();
 	a.PrintNames();
+	a.PrintFile();
 	std::cout << std::endl;
 	a.Print();
+
 	_getch();
 }
