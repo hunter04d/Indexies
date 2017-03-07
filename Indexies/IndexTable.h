@@ -149,4 +149,13 @@ public:
 		}	
 		fout.close();
 	}
+private:
+	void ConsumeInRow(size_t row)
+	{
+		
+		for(size_t K = 2 ; K <= static_cast<size_t>(log2(size));++K)
+		{
+
+		}
+	}
 };
