@@ -57,3 +57,26 @@ std::vector<bool>  utility::toBinaryVector(size_t _Value, size_t _ofSize)
 	}
 	return temp;
 }
+bool utility::hasString(std::string comparable, std::string comparison)// comparable should be less than comparison
+{
+	size_t numberofmatches = comparable.size(), counter = 0;
+	for(size_t i = 0; i < numberofmatches; ++i)
+	{
+		if (comparison.find(comparable.at(i))!= std::string::npos)
+		{
+			++counter;
+		}
+		/*for (size_t j = 0; j < comparison.size(); ++j)
+		{
+			if(comparable.at(i) == comparison.at(j))
+			{
+				++counter;
+			}
+		}*/
+	}
+	if (counter == numberofmatches)
+		{return true;}
+		return false;
+	
+}
+

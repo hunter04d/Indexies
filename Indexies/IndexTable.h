@@ -152,10 +152,42 @@ public:
 private:
 	void ConsumeInRow(size_t row)
 	{
-		
-		for(size_t K = 2 ; K <= static_cast<size_t>(log2(size));++K)
+		size_t N = static_cast<size_t>(log2(size));
+		for(size_t K = 1 ; K < N - 1 ;++K)
 		{
-
+			size_t startforI = [&K, &N]()
+			{
+				size_t sum = 0;
+				for (int i = 1; i <= K; ++i)
+				{
+					sum += utility::numberof_NcombK(N, i);
+				}
+				return sum;
+			}();
+			for(size_t i = startforI; i < startforI + utility::numberof_NcombK(N, K + 1); ++i)
+			{
+				if(F_Table.at(row).at(i).is_removed == false)
+				{
+					for(size_t j = startforI + utility::numberof_NcombK(N, K+1); j < size; ++j )
+					{
+						if(F_Table.at(row).at(j).is_removed == false)
+						{
+							if(utility::hasString(naming.at(i), naming.at(j)))
+							{
+								F_Table.at(row).at(j).is_removed = true;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	public:
+	void Consume()
+	{
+		for (int i = 0; i < size; ++i)
+		{
+			ConsumeInRow(i);
 		}
 	}
 };
