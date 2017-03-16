@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+//#include "FunctionBool.h"
+class FunctionBool; // foward declaration
 
 struct S_Index
 {
@@ -12,6 +14,7 @@ struct S_Index
 
 };
 
+//TODO: this class is a mess, proper implementation is in order
 class IndexTable
 {
 	const size_t size;
@@ -22,7 +25,7 @@ public:
 	{
 		VarTable temp(NumOfVars);
 		naming.resize(size);
-		for (int i = 0; i < size ; ++i)
+		for (int i = 0; i < size; ++i)
 		{
 			for (int j = 0; j < NumOfVars; ++j)
 			{
@@ -36,19 +39,19 @@ public:
 		temp.Set(0);
 		size_t counter(NumOfVars);
 		std::vector<std::string> combinationsRef;
-		for (auto K = 2; K<=NumOfVars; ++K)
+		for (auto K = 2; K <= NumOfVars; ++K)
 		{
 			combinationsRef = utility::NcombK(NumOfVars, K);
 			size_t CurrNumOfComb = utility::numberof_NcombK(NumOfVars, K);
-			for (auto j = counter; j < counter+CurrNumOfComb; ++j)
+			for (auto j = counter; j < counter + CurrNumOfComb; ++j)
 			{
 				for (auto i = 0; i < size; ++i)
 				{
 					F_Table.at(i).at(j).value.resize(K);
 					for (auto k = 0; k < K; ++k)
 					{
-						F_Table.at(i).at(j).value.at(k) = temp.at(combinationsRef.at(j-counter).at(k) - '0');
-						if(i == 0)
+						F_Table.at(i).at(j).value.at(k) = temp.at(combinationsRef.at(j - counter).at(k) - '0');
+						if (i == 0)
 							naming.at(j).push_back(combinationsRef.at(j - counter).at(k) - '0' + 'a');
 					}
 					temp.Increment();
@@ -58,6 +61,7 @@ public:
 			counter += CurrNumOfComb;
 		}
 	}
+
 	void PrintNames()
 	{
 		std::cout << ' ';
@@ -76,9 +80,9 @@ public:
 
 				for (int k = 0; k < F_Table.at(i).at(j).value.size(); ++k)
 				{
-					if(F_Table.at(i).at(j).is_removed)
+					if (F_Table.at(i).at(j).is_removed)
 					{
-						if(k == 0)
+						if (k == 0)
 						{
 							std::cout << 'R';
 						}
@@ -91,8 +95,15 @@ public:
 			std::cout << std::endl;
 		}
 	}
+	void RemoveRows(std::string constituents)
+	{
+		for (int i = 0; i < constituents.size(); ++i)
+		{
+			RemoveRow(constituents.at(i) - '0');
+		}
+	}
 
-	void RemoveRow(size_t row)
+	void RemoveRow(size_t row) // using number set, should use function direct interaction with constituents
 	{
 		for (int i = 0; i < size; ++i)
 		{
@@ -182,7 +193,8 @@ private:
 			}
 		}
 	}
-	public:
+
+public:
 	void Consume()
 	{
 		for (int i = 0; i < size; ++i)
@@ -190,4 +202,10 @@ private:
 			ConsumeInRow(i);
 		}
 	}
+
+	 void RemoveFromFunction(FunctionBool& _func, bool _tag);
 };
+
+#include "FunctionBool.h"
+
+

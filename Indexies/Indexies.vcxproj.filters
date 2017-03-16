@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Index Method">
+      <UniqueIdentifier>{2672af7a-6f02-47d6-a910-d555a3d2a247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Function Class">
+      <UniqueIdentifier>{b4f990ea-2fa3-4210-92c7-0066e7b0b692}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Text.txt">
@@ -36,7 +42,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IndexTable.h">
-      <Filter>Header Files</Filter>
+      <Filter>Index Method</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionBool.h">
+      <Filter>Function Class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -53,7 +62,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IndexTable.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Index Method</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionBool.cpp">
+      <Filter>Function Class</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

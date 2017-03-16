@@ -10,6 +10,7 @@
 #include "PrintTable .h"
 #include "UtilityFunc.h"
 #include "IndexTable.h"
+#include "FunctionBool.h"
 using std::vector;
 int main()
 {
@@ -20,16 +21,11 @@ int main()
 */
 
 	IndexTable a(4);
-	vector<bool> func = { 0,1,0,0,1,1,0,0,1,1,1,0,0,1,0,0 };
-	std::cout << func.size() << std::endl;
-	for (int i = 0; i < func.size(); ++i)
-	{
-		if (!func.at(i))
-		{
-			a.RemoveRow(i);
-		}
-	}
-	PrintTable(func);
+	FunctionBool func({ 0,1,0,0,1,1,0,0,1,1,1,0,0,1,0,0 });
+	std::string DDNF = func.DDNF();
+	a.RemoveFromFunction(func, 1);
+
+	//PrintTable(func);
 	a.RemoveRemoved();
 	a.PrintNames();
 	a.PrintFile();

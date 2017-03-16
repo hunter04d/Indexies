@@ -10,6 +10,7 @@ namespace utility
 	unsigned long long numberof_NcombK(unsigned N, unsigned K);
 	std::vector<bool> toBinaryVector(size_t _Value, size_t _ofSize);
 	bool hasString(std::string comparable, std::string comparison);
+	size_t fastpow2(size_t pow);
 
 
 }

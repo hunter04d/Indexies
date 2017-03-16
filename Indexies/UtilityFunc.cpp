@@ -80,3 +80,17 @@ bool utility::hasString(std::string comparable, std::string comparison)// compar
 	
 }
 
+size_t utility::fastpow2(size_t pow)
+{
+	if(pow == 0)
+	{
+		return 1;
+	}
+	size_t result = 2;
+	for(auto i = 1; i < pow; ++i)
+	{
+		result *= 2;
+	}
+	return result;
+}
+
