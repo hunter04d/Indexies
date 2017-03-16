@@ -21,21 +21,16 @@ int main()
 */
 
 	IndexTable a(4);
-	FunctionBool func({ 0,1,0,0,1,1,0,0,1,1,1,0,0,1,0,0 });
-	std::string DDNF = func.DDNF();
-	a.RemoveFromFunction(func, 1);
-
-	//PrintTable(func);
-	a.RemoveRemoved();
 	a.PrintNames();
-	a.PrintFile();
 	std::cout << std::endl;
 	a.Print();
+	FunctionBool func({ 0,1,0,0,1,1,0,0,1,1,1,0,0,1,0,0 });
+
 	a.Consume();
 	a.PrintNames();
-	a.PrintFile();
 	std::cout << std::endl;
 	a.Print();
+
 
 	_getch();
 }

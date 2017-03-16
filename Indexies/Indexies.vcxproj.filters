@@ -16,7 +16,7 @@
     <Filter Include="Index Method">
       <UniqueIdentifier>{2672af7a-6f02-47d6-a910-d555a3d2a247}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Function Class">
+    <Filter Include="Universal">
       <UniqueIdentifier>{b4f990ea-2fa3-4210-92c7-0066e7b0b692}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -32,9 +32,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VarTable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PrintTable .h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -45,7 +42,10 @@
       <Filter>Index Method</Filter>
     </ClInclude>
     <ClInclude Include="FunctionBool.h">
-      <Filter>Function Class</Filter>
+      <Filter>Universal</Filter>
+    </ClInclude>
+    <ClInclude Include="VarTable.h">
+      <Filter>Universal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +65,7 @@
       <Filter>Index Method</Filter>
     </ClCompile>
     <ClCompile Include="FunctionBool.cpp">
-      <Filter>Function Class</Filter>
+      <Filter>Universal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
