@@ -16,7 +16,8 @@ int main()
 {
 
 
-	IndexTable a(4);
+	IndexTable a(8);
+/*
 	a.PrintNames();
 	std::cout << std::endl;
 	a.Print();
@@ -26,7 +27,8 @@ int main()
 	a.PrintNames();
 	std::cout << std::endl;
 	a.Print();
+*/
 
-
+	std::cout << "IndexTable for vars created";
 	_getch();
 }

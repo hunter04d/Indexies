@@ -6,7 +6,7 @@ std::vector<std::string> utility::NcombK(unsigned N, unsigned K) // return vecto
 {
 	std::string bitmask(K, 1); // K leading 1's
 	bitmask.resize(N, 0); // N-K trailing 0's					 
-						  // print integers and permute bitmask
+	// print integers and permute bitmask
 	std::vector<std::string> temp(utility::numberof_NcombK(N, K));
 	size_t counter = 0;
 	do
@@ -36,7 +36,8 @@ unsigned long long utility::numberof_NcombK(unsigned N, unsigned K)
 	}
 	return result;
 }
-std::vector<bool>  utility::toBinaryVector(size_t _Value, size_t _ofSize)
+
+std::vector<bool> utility::toBinaryVector(size_t _Value, size_t _ofSize)
 {
 	//Some overhead reduction to reduce over calculations 
 	if (_Value == 0)
@@ -57,40 +58,18 @@ std::vector<bool>  utility::toBinaryVector(size_t _Value, size_t _ofSize)
 	}
 	return temp;
 }
-bool utility::hasString(std::string comparable, std::string comparison)// comparable should be less than comparison
+
+bool utility::hasString(const std::string& comparable, const std::string& comparison)// comparable should be less than comparison
 {
 	size_t numberofmatches = comparable.size(), counter = 0;
-	for(size_t i = 0; i < numberofmatches; ++i)
+	for (size_t i = 0; i < numberofmatches; ++i)
 	{
-		if (comparison.find(comparable.at(i))!= std::string::npos)
-		{
+		if (comparison.find(comparable.at(i)) != std::string::npos)
 			++counter;
-		}
-		/*for (size_t j = 0; j < comparison.size(); ++j)
-		{
-			if(comparable.at(i) == comparison.at(j))
-			{
-				++counter;
-			}
-		}*/
 	}
 	if (counter == numberofmatches)
-		{return true;}
-		return false;
+	{ return true; }
+	return false;
 	
-}
-
-size_t utility::fastpow2(size_t pow)
-{
-	if(pow == 0)
-	{
-		return 1;
-	}
-	size_t result = 2;
-	for(auto i = 1; i < pow; ++i)
-	{
-		result *= 2;
-	}
-	return result;
 }
 

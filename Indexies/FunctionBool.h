@@ -13,6 +13,15 @@ class FunctionBool
 	const size_t numberOfvars;
 public:
 	friend void IndexTable::RemoveRowFromFunction(FunctionBool &_func, bool _tag);
+	FunctionBool(std::initializer_list<bool> init_list) : vector(init_list), numberOfvars(ceil(log2(init_list.size())))
+	{
+		size_t numberOfContituents(utility::fastpow2(numberOfvars));
+		if (vector.size() != numberOfContituents)
+		{
+			vector.resize(numberOfContituents, false);
+		}
+	}
+
 	FunctionBool(std::vector<bool> init_vector) : vector(init_vector), numberOfvars(ceil(log2(init_vector.size())))
 	{
 		size_t numberOfContituents(utility::fastpow2(numberOfvars));

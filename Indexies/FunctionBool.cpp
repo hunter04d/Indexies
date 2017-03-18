@@ -1,1 +1,2 @@
-﻿#include "FunctionBool.h"
+﻿#include "stdafx.h"
+#include "FunctionBool.h"
