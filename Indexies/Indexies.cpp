@@ -14,11 +14,7 @@
 using std::vector;
 int main()
 {
-/*
-	std::string a = "cd";
-	std::string b = "abc";
-	std::cout << utility::hasString(a, b);
-*/
+
 
 	IndexTable a(4);
 	a.PrintNames();
