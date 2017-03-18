@@ -23,15 +23,7 @@ class IndexTable
 	std::vector<std::string> naming;
 public:
 	explicit IndexTable(size_t NumOfVars);
-/*
-	void RemoveRows(std::string constituents) //deprecated and bad practice, need to change 
-	{
-		for (int i = 0; i < constituents.size(); ++i)
-		{
-			RemoveRow(constituents.at(i) - '0');
-		}
-	}
-*/
+
 
 
 	/*
