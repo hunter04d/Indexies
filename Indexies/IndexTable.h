@@ -5,8 +5,7 @@
 #include <fstream>
 #include <iomanip>
 #include <tuple>
-//#include "FunctionBool.h"
-class FunctionBool; // forward declaration
+#include "FunctionBool.h"
 
 struct S_Index
 {
@@ -21,6 +20,7 @@ class IndexTable
 	const size_t size;
 	std::vector<std::vector<S_Index>> F_Table;
 	std::vector<std::string> naming;
+	bool tag = true;
 public:
 	explicit IndexTable(size_t NumOfVars);
 
@@ -47,15 +47,24 @@ public:
 
 	void Print();
 
-	void RemoveRowFromFunction(FunctionBool& _func, bool _tag);
-	
+	void RemoveFromFunction(FunctionBool& _func, bool _tag);
+
+	std::vector<size_t> GetUnremovedPos();
+
 };
 
-#include "FunctionBool.h"
-
-inline void IndexTable::RemoveRowFromFunction(FunctionBool & _func, bool _tag)
+inline void IndexTable::RemoveFromFunction(FunctionBool& _func, bool _tag)
 {
-
+	tag = _tag;
+	for (size_t i = 0; i < size; ++i)
+	{
+		if (_func.vector.at(i) != _tag)
+		{
+			RemoveRow(i);
+		}
+		RemoveSimilar();
+		//Consume();
+	}
 }
 
 

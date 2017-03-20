@@ -78,6 +78,23 @@ void IndexTable::Print()
 	}
 }
 
+std::vector<size_t> IndexTable::GetUnremovedPos()
+{
+	std::vector<size_t> out;
+	for (int row = 0; row < size; ++row)
+	{
+		for (int coloumn = 0; coloumn < size; ++coloumn)
+		{
+			if (F_Table.at(row).at(coloumn).is_removed == false)
+			{
+				out.push_back(coloumn);
+			}
+		}
+	}
+	out.erase(std::unique(out.begin(), out.end()), out.end());
+	return out;
+}
+
 void IndexTable::RemoveSimilar()
 {
 	for (int coloumn = 0; coloumn < size; ++coloumn)
@@ -123,7 +140,7 @@ void IndexTable::PrintFile()
 void IndexTable::Consume()
 {
 	size_t N = static_cast<size_t>(log2(size));
-	for (int row = 0; row < size; ++row)
+	for (size_t row = 0; row < size; ++row)
 	{
 		for (size_t K = 0; K < N - 1;++K)
 		{

@@ -16,19 +16,14 @@ int main()
 {
 
 
-	IndexTable a(8);
-/*
-	a.PrintNames();
-	std::cout << std::endl;
+	IndexTable a(3);
 	a.Print();
-	FunctionBool func({ 0,1,0,0,1,1,0,0,1,1,1,0,0,1,0,0 });
+	FunctionBool func({0,1,0,0,1,0,0,0});
+	a.RemoveFromFunction(func, 1);
+	a.Print();
 
-	a.Consume();
-	a.PrintNames();
-	std::cout << std::endl;
-	a.Print();
-*/
 
 	std::cout << "IndexTable for vars created";
+
 	_getch();
 }

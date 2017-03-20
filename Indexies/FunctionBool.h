@@ -6,13 +6,11 @@
  */
 #include <vector>
 #include "UtilityFunc.h"
-#include "IndexTable.h"
-class FunctionBool
+
+struct FunctionBool
 {
 	std::vector<bool> vector;
 	const size_t numberOfvars;
-public:
-	friend void IndexTable::RemoveRowFromFunction(FunctionBool &_func, bool _tag);
 	FunctionBool(std::initializer_list<bool> init_list) : vector(init_list), numberOfvars(ceil(log2(init_list.size())))
 	{
 		size_t numberOfContituents(utility::fastpow2(numberOfvars));
@@ -32,28 +30,24 @@ public:
 	}
 
 	//TODO: change string to vector<size_t> or better
-	std::string DDNF()
+	std::vector<size_t> PDNF()
 	{
-		std::string out;
+		std::vector<size_t> out;
 		for (auto i = 0; i < vector.size(); ++i)
 		{
 			if(vector.at(i) == 1)
-			{
-				out.push_back(i + '0');
-			}
+				out.push_back(i);
 		}
 		return out;
 	}
 
-	std::string DKNF()
+	std::vector<size_t> PСNF()
 	{
-		std::string out;
+		std::vector<size_t> out;
 		for (auto i = 0; i < vector.size(); ++i)
 		{
 			if (vector.at(i) == 0)
-			{
-				out.push_back(i + '0');
-			}
+				out.push_back(i);
 		}
 		return out;
 	}
