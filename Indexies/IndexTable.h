@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <tuple>
 #include "FunctionBool.h"
+#include <set>
 
 struct S_Index
 {
@@ -29,7 +30,7 @@ public:
 	/*
 	* Main functions for removing unneeded combinations
 	*/
-	void RemoveRow(size_t row) // using number set, should use function direct interaction with constituents
+	void RemoveRow(size_t row) // used in access with FunctionBool object
 	{
 		for (int i = 0; i < size; ++i)
 		{
@@ -49,7 +50,7 @@ public:
 
 	void RemoveFromFunction(FunctionBool& _func, bool _tag);
 
-	std::vector<size_t> GetUnremovedPos();
+	std::set<size_t> GetUnremovedPos();
 
 };
 
@@ -63,7 +64,7 @@ inline void IndexTable::RemoveFromFunction(FunctionBool& _func, bool _tag)
 			RemoveRow(i);
 		}
 		RemoveSimilar();
-		//Consume();
+		Consume();
 	}
 }
 

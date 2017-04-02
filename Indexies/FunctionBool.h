@@ -1,6 +1,6 @@
 ﻿#pragma once
 /*
- *Runtime heavy implementation
+ * Runtime heavy implementation
  * stores only the needed part
  * everything else is derived in member functions
  */
@@ -35,7 +35,7 @@ struct FunctionBool
 		std::vector<size_t> out;
 		for (auto i = 0; i < vector.size(); ++i)
 		{
-			if(vector.at(i) == 1)
+			if (vector.at(i) == 1)
 				out.push_back(i);
 		}
 		return out;
@@ -51,5 +51,4 @@ struct FunctionBool
 		}
 		return out;
 	}
-
 };

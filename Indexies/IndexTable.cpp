@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "IndexTable.h"
 #include "FunctionBool.h"
+#include <set>
 
 IndexTable::IndexTable(size_t NumOfVars) :size(2 << NumOfVars - 1), F_Table(size, std::vector<S_Index>(size))
 {
@@ -78,20 +79,25 @@ void IndexTable::Print()
 	}
 }
 
-std::vector<size_t> IndexTable::GetUnremovedPos()
+std::set<size_t> IndexTable::GetUnremovedPos()
 {
-	std::vector<size_t> out;
+	std::set<size_t> out;
 	for (int row = 0; row < size; ++row)
 	{
 		for (int coloumn = 0; coloumn < size; ++coloumn)
 		{
 			if (F_Table.at(row).at(coloumn).is_removed == false)
 			{
-				out.push_back(coloumn);
+				out.insert(coloumn);
 			}
 		}
 	}
-	out.erase(std::unique(out.begin(), out.end()), out.end());
+/* //TODO: Handle unminimized cases here!!!
+	if(out.size() ==0)
+	{
+		//throw std::exception("exception");
+	}
+*/
 	return out;
 }
 
