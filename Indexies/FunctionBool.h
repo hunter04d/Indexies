@@ -40,6 +40,16 @@ struct FunctionBool
 		}
 		return out;
 	}
+	size_t PDNF_Size()
+	{
+		size_t out(0);
+		for (auto i = 0; i < vector.size(); ++i)
+		{
+			if (vector.at(i) == 1)
+				++out;
+		}
+		return out;
+	}
 
 	std::vector<size_t> PСNF()
 	{
@@ -48,6 +58,16 @@ struct FunctionBool
 		{
 			if (vector.at(i) == 0)
 				out.push_back(i);
+		}
+		return out;
+	}
+	size_t PCNF_Size()
+	{
+		size_t out(0);
+		for (auto i = 0; i < vector.size(); ++i)
+		{
+			if (vector.at(i) == 0)
+				++out;
 		}
 		return out;
 	}

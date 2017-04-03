@@ -12,7 +12,10 @@ public:
 	explicit VarTable(size_t _NumOfVars = 3) : NumOfVars(_NumOfVars), F_VarTable(_NumOfVars, false)
 	{
 	}
-
+	VarTable(size_t _NumOfVars, size_t value) : NumOfVars(_NumOfVars), F_VarTable(_NumOfVars, false)
+	{
+		Set(value);
+	}
 
 	void Increment();
 

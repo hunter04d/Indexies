@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "IndexTable.h"
 #include "FunctionBool.h"
+
 #include <set>
 
 IndexTable::IndexTable(size_t NumOfVars) :size(2 << NumOfVars - 1), F_Table(size, std::vector<S_Index>(size))
@@ -84,7 +85,7 @@ std::set<size_t> IndexTable::GetUnremovedColPos()
 	std::set<size_t> out;
 	for (int row = 0; row < size; ++row)
 	{
-		for (int coloumn = 0; coloumn < size; ++coloumn)
+		for (int coloumn = 0; coloumn < size -1; ++coloumn)
 		{
 			if (F_Table.at(row).at(coloumn).is_removed == false)
 			{
