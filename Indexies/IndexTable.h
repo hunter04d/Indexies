@@ -50,7 +50,7 @@ public:
 
 	void RemoveFromFunction(FunctionBool& _func, bool _tag);
 
-	std::set<size_t> GetUnremovedPos();
+	std::set<size_t> GetUnremovedColPos();
 
 };
 

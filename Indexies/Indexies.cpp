@@ -16,13 +16,5 @@ using std::vector;
 
 int main()
 {
-	long long t0  = (long long)time(NULL);
-	for(int i = 0 ; i < 10000; ++i)
-	{
-		std::cout << 4 << '\n' ;
-	}
-	long long t1 = (long long)time(NULL);
-	std::cout << t1 - t0;
-
-	_getch();
+	
 }

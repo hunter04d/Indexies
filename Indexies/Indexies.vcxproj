@@ -145,6 +145,7 @@
     <Text Include="Text.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CoreTable.h" />
     <ClInclude Include="FunctionBool.h" />
     <ClInclude Include="IndexTable.h" />
     <ClInclude Include="PrintTable .h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="VarTable.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CoreTable.cpp" />
     <ClCompile Include="FunctionBool.cpp" />
     <ClCompile Include="Indexies.cpp" />
     <ClCompile Include="IndexTable.cpp" />

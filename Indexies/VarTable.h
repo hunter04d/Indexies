@@ -45,6 +45,10 @@ public:
 	{
 		return F_VarTable.back();
 	}
+	size_t Size() const
+	{
+		return NumOfVars;
+	}
 
 	friend std::ostream& operator<<(std::ostream& _cout, VarTable& _VarTable);
 };

@@ -79,7 +79,7 @@ void IndexTable::Print()
 	}
 }
 
-std::set<size_t> IndexTable::GetUnremovedPos()
+std::set<size_t> IndexTable::GetUnremovedColPos()
 {
 	std::set<size_t> out;
 	for (int row = 0; row < size; ++row)
