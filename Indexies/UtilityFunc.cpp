@@ -2,7 +2,7 @@
 #include "UtilityFunc.h"
 
 
-std::vector<std::string> utility::NcombK(unsigned N, unsigned K) // return vector of all possible combinations
+std::vector<std::string> utility::NcombK(unsigned N, unsigned K) // legacy func
 {
 	std::string bitmask(K, 1); // K leading 1's
 	bitmask.resize(N, 0); // N-K trailing 0's					 
@@ -21,6 +21,26 @@ std::vector<std::string> utility::NcombK(unsigned N, unsigned K) // return vecto
 		++counter;
 	} while (prev_permutation(bitmask.begin(), bitmask.end()));
 	return temp;
+}
+std::vector<std::vector<size_t>> utility::NcombK_vector(unsigned N, unsigned K) // return vector of all possible combinations
+{
+	std::string bitmask(K, 1); // K leading 1's
+	bitmask.resize(N, 0); // N-K trailing 0's					 
+						  // print integers and permute bitmask
+	std::vector<std::vector<size_t>> out(utility::numberof_NcombK(N, K));
+	size_t counter = 0;
+	do
+	{
+		for (auto i = 0; i < N; ++i) // [0..N-1] integers
+		{
+			if (bitmask[i])
+			{
+				out.at(counter).push_back(i);
+			}
+		}
+		++counter;
+	} while (prev_permutation(bitmask.begin(), bitmask.end()));
+	return out;
 }
 
 unsigned long long utility::numberof_NcombK(unsigned N, unsigned K)

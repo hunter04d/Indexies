@@ -13,20 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Universal">
+    <Filter Include="Header Files\Universal">
+      <UniqueIdentifier>{9474c3fb-5fee-4966-9e17-4877674c51cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Universal">
       <UniqueIdentifier>{b4f990ea-2fa3-4210-92c7-0066e7b0b692}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Universal\Utility">
-      <UniqueIdentifier>{9d1e7e24-b048-4ef4-9ded-b284d674a292}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="exceptions">
-      <UniqueIdentifier>{49f8e347-f9b0-47b7-a5f6-bd1f665bd0f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Index Method">
-      <UniqueIdentifier>{2672af7a-6f02-47d6-a910-d555a3d2a247}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\CoreTable">
-      <UniqueIdentifier>{43386e6a-16d5-4bc1-8878-007779f97138}</UniqueIdentifier>
+    <Filter Include="Header Files\Precompiled">
+      <UniqueIdentifier>{81f66465-d23f-4913-9f0c-10ae8f3bc853}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,29 +29,32 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FunctionBool.h">
-      <Filter>Universal</Filter>
-    </ClInclude>
     <ClInclude Include="VarTable.h">
-      <Filter>Universal</Filter>
-    </ClInclude>
-    <ClInclude Include="PrintTable .h">
-      <Filter>Universal</Filter>
+      <Filter>Header Files\Universal</Filter>
     </ClInclude>
     <ClInclude Include="UtilityFunc.h">
-      <Filter>Universal\Utility</Filter>
+      <Filter>Header Files\Universal</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionBool.h">
+      <Filter>Header Files\Universal</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintTable .h">
+      <Filter>Header Files\Universal</Filter>
     </ClInclude>
     <ClInclude Include="CoreTable.h">
-      <Filter>Source Files\CoreTable</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IndexTable.h">
-      <Filter>Source Files\Index Method</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TermIndex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\Precompiled</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,23 +64,26 @@
     <ClCompile Include="Indexies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IndexTable.cpp">
-      <Filter>Source Files\Index Method</Filter>
-    </ClCompile>
-    <ClCompile Include="FunctionBool.cpp">
-      <Filter>Universal</Filter>
-    </ClCompile>
     <ClCompile Include="PrintTable .cpp">
-      <Filter>Universal</Filter>
+      <Filter>Source Files\Universal</Filter>
     </ClCompile>
     <ClCompile Include="UtilityFunc.cpp">
-      <Filter>Universal\Utility</Filter>
+      <Filter>Source Files\Universal</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionBool.cpp">
+      <Filter>Source Files\Universal</Filter>
     </ClCompile>
     <ClCompile Include="VarTable.cpp">
-      <Filter>Universal</Filter>
+      <Filter>Source Files\Universal</Filter>
+    </ClCompile>
+    <ClCompile Include="TermIndex.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CoreTable.cpp">
-      <Filter>Source Files\CoreTable</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexTable.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

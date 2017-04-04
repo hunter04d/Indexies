@@ -21,10 +21,9 @@ IndexTable::IndexTable(size_t NumOfVars) :size(2 << NumOfVars - 1), F_Table(size
 	}
 	temp.Set(0);
 	size_t counter(NumOfVars);
-	std::vector<std::string> combinationsRef;
 	for (auto K = 2; K <= NumOfVars; ++K)
 	{
-		combinationsRef = utility::NcombK(NumOfVars, K);
+		auto combinationsRef = utility::NcombK_vector(NumOfVars, K);
 		size_t CurrNumOfComb = utility::numberof_NcombK(NumOfVars, K);
 		for (auto j = counter; j < counter + CurrNumOfComb; ++j)
 		{
@@ -33,9 +32,9 @@ IndexTable::IndexTable(size_t NumOfVars) :size(2 << NumOfVars - 1), F_Table(size
 				F_Table.at(i).at(j).value.resize(K);
 				for (auto k = 0; k < K; ++k)
 				{
-					F_Table.at(i).at(j).value.at(k) = temp.at(combinationsRef.at(j - counter).at(k) - '0');
+					F_Table.at(i).at(j).value.at(k) = temp.at(combinationsRef.at(j - counter).at(k));
 					if (i == 0)
-						naming.at(j).push_back(combinationsRef.at(j - counter).at(k) - '0' + 'a');
+						naming.at(j).push_back(combinationsRef.at(j - counter).at(k) + 'a');
 				}
 				temp.Increment();
 			}
@@ -56,13 +55,13 @@ void IndexTable::PrintNames()
 
 void IndexTable::Print()
 {
-	for (int i = 0; i < size; ++i)
+	for (auto i = 0; i < size; ++i)
 	{
-		for (int j = 0; j < size; ++j)
+		for (auto j = 0; j < size; ++j)
 		{
 			std::cout << std::setw(2);
 
-			for (int k = 0; k < F_Table.at(i).at(j).value.size(); ++k)
+			for (auto k = 0; k < F_Table.at(i).at(j).value.size(); ++k)
 			{
 				if (F_Table.at(i).at(j).is_removed)
 				{
@@ -102,15 +101,58 @@ std::set<size_t> IndexTable::GetUnremovedColPos()
 	return out;
 }
 
+TermIndex IndexTable::ConvertS_Index_to_TermIndex(size_t _i, size_t _j)
+{
+	TermIndex out(VarTable(log2(size), _i));
+	const auto& str = naming.at(_j);
+	char name_ptr = 'a';
+	std::vector<size_t> pos;
+	for (auto i = 0; i < str.size(); ++i)
+	{
+		pos.push_back(str.at(i) - name_ptr);
+	}
+	for (auto i = 0; i < log2(size); ++i)
+	{
+		if (std::find(pos.begin(), pos.end(), i) == pos.end())
+		{
+			out.at(i) = TermIndex::crossed;
+		}
+	}
+	return out;
+}
+
+std::vector<TermIndex> IndexTable::GetTermsInCoreTableForm()
+{
+	std::vector<TermIndex> out;
+	auto needed_cols = GetUnremovedColPos();
+	auto it = needed_cols.begin();
+	while (it != needed_cols.end())
+	{
+		for (auto i = 0; i < size; ++i)
+		{
+			if (F_Table.at(i).at(*it).is_removed == false)
+			{
+				auto insert_val = ConvertS_Index_to_TermIndex(i, *it);
+				if (std::find(out.begin(), out.end(), insert_val) == out.end())
+				{
+					out.push_back(insert_val);
+				}
+			}
+		}
+		++it;
+	}
+	return out;
+}
+
 void IndexTable::RemoveSimilar()
 {
-	for (int coloumn = 0; coloumn < size; ++coloumn)
+	for (auto coloumn = 0; coloumn < size; ++coloumn)
 	{
-		for (int row = 0; row < size; ++row)
+		for (auto row = 0; row < size; ++row)
 		{
 			if (F_Table.at(row).at(coloumn).is_removed == true)
 			{
-				for (int k = 0; k < size; ++k)
+				for (auto k = 0; k < size; ++k)
 				{
 					if (F_Table.at(k).at(coloumn).is_removed || k == row) continue;
 					if (F_Table.at(row).at(coloumn).value == F_Table.at(k).at(coloumn).value)

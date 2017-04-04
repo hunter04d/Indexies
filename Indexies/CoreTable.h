@@ -5,61 +5,8 @@
 #include "FunctionBool.h"
 #include "VarTable.h"
 #include <iostream>
+#include "TermIndex.h"
 
-
-class OneX_InCol_exception
-{
-	
-};
-
-class TermIndex
-{
-public:
-	enum val
-	{
-		zero = 0,
-		one = 1,
-		crossed = 2
-	};
-private:
-	size_t F_size;
-	std::vector <val> F_term;
-public:
-	TermIndex(VarTable _init_val) : F_size(_init_val.Size()), F_term(F_size)
-	{
-		for(size_t i = 0 ; i <F_size ;++i)
-		{
-			F_term.at(i) = static_cast<val>( _init_val.at(i));
-		}
-
-	}
-	bool operator==(const TermIndex&rhs) const
-	{
-		return F_term == rhs.F_term;
-	}
-	TermIndex CrossOutAtIndex(size_t index) const 
-	{
-		auto out = *this;
-		out.F_term.at(index) = crossed;
-		return out;
-	}
-	bool Includes(TermIndex& _smaller_term)
-	{
-		for(size_t i = 0; i < F_size; ++i)
-		{
-			if((F_term.at(i) == _smaller_term.F_term.at(i)) || _smaller_term.F_term.at(i) == crossed )
-			{
-				continue;
-			}
-			 return false;
-		}
-		return true;
-	}
-	auto& at(size_t i)
-	{
-		return F_term.at(i);
-	}
-};
 
 struct Edge
 {
@@ -98,14 +45,9 @@ public:
 		{
 			min_terms.emplace_back(_min_terms.at(i));
 		}
-		SetIncludesTag();
-	}
-
-	void SetIncludesTag()
-	{
 		for (auto i = 0; i < rows; ++i)
 		{
-			for (auto j = 0; j< coloumlns; ++j)
+			for (auto j = 0; j < coloumlns; ++j)
 			{
 				if (terms.at(j).term.Includes(min_terms.at(i).term))
 				{
@@ -114,6 +56,7 @@ public:
 			}
 		}
 	}
+
 	// a  LOT OF TODO
 private:
 	int OneX_InCol(size_t _coloumn)
@@ -136,24 +79,6 @@ private:
 		return out;
 	}
 
-public:
-	void SetIsCrossed_MinTermTags_and_DeletedCellTags()
-	{
-		for (auto j = 0; j < coloumlns; ++j)
-		{
-			int r_row = OneX_InCol(j);
-			if (r_row != -1)
-			{
-				if (deletedRow.count(j) == 0)
-				{
-					min_terms.at(r_row).is_crossed = true;
-					deletedRow.insert(r_row);
-					DeleteRow(r_row);
-				}
-			}
-		}
-	}
-
 	void DeleteRow(int _row)
 	{
 		for (auto j = 0; j < coloumlns; ++j)
@@ -169,13 +94,29 @@ public:
 			}
 		}
 	}
-
 	void DeleteColoumn(size_t _coloumn)
 	{
 		terms.at(_coloumn).is_crossed = true;
 		for (auto i = 0; i < rows; ++i)
 		{
 			F_table.at(i).at(_coloumn).deleted = true;
+		}
+	}
+public:
+	void GetCore()
+	{
+		for (auto j = 0; j < coloumlns; ++j)
+		{
+			int r_row = OneX_InCol(j);
+			if (r_row != -1)
+			{
+				if (deletedRow.count(j) == 0)
+				{
+					min_terms.at(r_row).is_crossed = true;
+					deletedRow.insert(r_row);
+					DeleteRow(r_row);
+				}
+			}
 		}
 	}
 

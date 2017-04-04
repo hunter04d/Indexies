@@ -29,6 +29,28 @@ struct FunctionBool
 		}
 	}
 
+	FunctionBool(std::string init_string) : numberOfvars(ceil(log2(init_string.size())))
+	{
+		size_t numberOfContituents(utility::fastpow2(numberOfvars));
+		for (auto i = 0 ; i < init_string.size(); ++i)
+		{
+			auto& curr_char =  init_string.at(i);
+			if (curr_char == '0')
+			{
+				vector.push_back(0);
+			}
+			else if(curr_char == '1')
+			{
+				vector.push_back(1);
+			}
+			else { throw std::exception("wrong symbol"); }
+		}
+		if (vector.size() != numberOfContituents)
+		{
+			vector.resize(numberOfContituents, false);
+		}
+	}
+
 	//TODO: change string to vector<size_t> or better
 	std::vector<size_t> PDNF()
 	{
