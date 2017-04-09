@@ -11,6 +11,8 @@ namespace utility
 	std::vector<bool> toBinaryVector(size_t _Value, size_t _ofSize);
 	bool hasString(const std::string& comparable, const std::string& comparison);
 
+	
+
 	inline size_t fastpow2(size_t pow)
 	{
 		if (pow == 0)

@@ -151,7 +151,7 @@ public:
 			}
 		}
 		auto N = left_out_min_terms.size();
-		for (auto K = 5/*0*/; K <= N; ++K)
+		for (auto K = 0; K <= N; ++K)
 		{
 			auto current_combinations = utility::NcombK_vector(N, K);
 			for (const auto& current_combination : current_combinations) // look at the current combination

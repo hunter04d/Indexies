@@ -56,6 +56,9 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files\Precompiled</Filter>
     </ClInclude>
+    <ClInclude Include="MinimizedManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -83,6 +86,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IndexTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MinimizedManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
