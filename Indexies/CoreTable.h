@@ -5,6 +5,7 @@
 #include "FunctionBool.h"
 #include "VarTable.h"
 #include <iostream>
+#include <numeric>
 #include "TermIndex.h"
 
 
@@ -59,7 +60,7 @@ public:
 
 	// a  LOT OF TODO
 private:
-	int OneX_InCol(size_t _coloumn)
+	int OneXInCol(size_t _coloumn)
 	{
 		bool ret_tag = false;
 		int out = -1;
@@ -107,7 +108,7 @@ public:
 	{
 		for (auto j = 0; j < coloumlns; ++j)
 		{
-			int r_row = OneX_InCol(j);
+			int r_row = OneXInCol(j);
 			if (r_row != -1)
 			{
 				if (deletedRow.count(j) == 0)
@@ -119,6 +120,76 @@ public:
 			}
 		}
 	}
+	std::string ReturnCore()
+	{
+		std::string out;
+		for (const auto& element : deletedRow)
+		{
+			out += min_terms.at(element).term.ToString();
+			out.push_back('v');
+		}
+		return out;
+	}
+
+	std::vector<std::string> ReturnRest()
+	{
+		std::vector<std::string> out;
+		std::vector<size_t> left_out_min_terms;
+		std::vector<size_t> left_out_terms;
+		for (auto i = 0u; i < min_terms.size(); ++i)
+		{
+			if (deletedRow.count(i) == 0)
+			{
+				left_out_min_terms.push_back(i);
+			}
+		}
+		for (auto i = 0u; i < terms.size(); ++i)
+		{
+			if (deletedCol.count(i) == 0)
+			{
+				left_out_terms.push_back(i);
+			}
+		}
+		auto N = left_out_min_terms.size();
+		for (auto K = 5/*0*/; K <= N; ++K)
+		{
+			auto current_combinations = utility::NcombK_vector(N, K);
+			for (const auto& current_combination : current_combinations) // look at the current combination
+			{
+				auto curr_terms(left_out_terms);
+				for (const auto& current_min_term_index : current_combination)//look at the current min_term
+				{
+					for (auto i = 0; i < left_out_terms.size(); ++i)
+					{
+						if (F_table.at(left_out_min_terms.at(current_min_term_index)).at(left_out_terms.at(i)).includes_min_term == true)
+						{
+							if (std::find(curr_terms.begin(), curr_terms.end(), left_out_terms.at(i)) != curr_terms.end())
+							{
+								curr_terms.erase(std::find(curr_terms.begin(), curr_terms.end(), left_out_terms.at(i)));
+							}
+						}
+					}
+				}
+				if (curr_terms.empty())
+				{
+					std::string for_pushing;
+					for (int i = 0; i < K; ++i)
+					{
+						for_pushing += min_terms.at(left_out_min_terms.at(current_combination.at(i))).term.ToString();
+						for_pushing.push_back('v');
+					}
+					for_pushing.pop_back();
+					out.push_back(for_pushing);
+				}
+			}
+			if (!out.empty())
+			{
+				break;
+			}
+		}
+		return out;
+	}
+	
 
 	void Print()
 	{

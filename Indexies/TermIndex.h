@@ -45,6 +45,33 @@ public:
 		return true;
 	}
 
+	std::string ToString()
+	{
+		std::string out;
+		for (const auto& x : F_term)
+		{
+			switch (x)
+			{
+				case zero:
+				{
+					out.push_back('0');
+					break;
+				}
+				case one:
+				{
+					out.push_back('1');
+					break;
+				}
+				case crossed:
+				{
+					out.push_back('-');
+					break;
+				}
+			}
+		}
+		return out;
+	}
+
 	auto& at(size_t i)
 	{
 		return F_term.at(i);

@@ -193,7 +193,7 @@ void IndexTable::Consume()
 	{
 		for (size_t K = 0; K < N - 1;++K)
 		{
-			size_t startforI = [&K, &N]()
+			size_t startfor_i = [&K, &N]()
 			{
 				size_t sum = 0;
 				for (int i = 1; i <= K; ++i)
@@ -202,11 +202,11 @@ void IndexTable::Consume()
 				}
 				return sum;
 			}();
-			for (size_t i = startforI; i < startforI + utility::numberof_NcombK(N, K + 1); ++i)
+			for (size_t i = startfor_i; i < startfor_i + utility::numberof_NcombK(N, K + 1); ++i)
 			{
 				if (F_Table.at(row).at(i).is_removed == false)
 				{
-					for (size_t j = startforI + utility::numberof_NcombK(N, K + 1); j < size; ++j)
+					for (size_t j = startfor_i + utility::numberof_NcombK(N, K + 1); j < size; ++j)
 					{
 						if (F_Table.at(row).at(j).is_removed == false)
 						{
